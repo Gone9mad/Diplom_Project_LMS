@@ -1,0 +1,23 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$rnWSSx8MUkk9xKXS6t0o2q$VEpjS9CJOzviKF9GBLk97Cf+1I54aW/QLk4Uo025/H4=",
+      "last_login": "2024-08-26T10:59:47.396Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "date_joined": "2024-08-26T10:18:27.891Z",
+      "email": "admin@admin.com",
+      "first_name": "Admin",
+      "last_name": "SuperUser",
+      "phone": null,
+      "avatar": "",
+      "token": null,
+      "is_active": true,
+      "role": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

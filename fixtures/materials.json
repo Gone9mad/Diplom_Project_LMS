@@ -1,0 +1,36 @@
+[
+  {
+    "model": "materials.courses",
+    "pk": 1,
+    "fields": {
+      "name_courses": "Python-Backend",
+      "preview": "",
+      "description": "Courses deskriptions",
+      "owner": 1
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+      "courses": 1,
+      "name_lesson": "ООП",
+      "description": "",
+      "preview": "",
+      "video_url": null,
+      "owner": 1
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+      "courses": 1,
+      "name_lesson": "Data Base",
+      "description": "",
+      "preview": "",
+      "video_url": null,
+      "owner": 1
+    }
+  }
+]

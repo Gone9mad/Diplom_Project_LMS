@@ -1,0 +1,37 @@
+[
+  {
+    "model": "testing.question",
+    "pk": 1,
+    "fields": {
+      "lesson": 1,
+      "question": "Где раки зимуют?"
+    }
+  },
+  {
+    "model": "testing.answers",
+    "pk": 1,
+    "fields": {
+      "question": 1,
+      "answers": "Дома",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "testing.answers",
+    "pk": 2,
+    "fields": {
+      "question": 1,
+      "answers": "На даче",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "testing.answers",
+    "pk": 3,
+    "fields": {
+      "question": 1,
+      "answers": "На вокзалах",
+      "is_correct": false
+    }
+  }
+]
