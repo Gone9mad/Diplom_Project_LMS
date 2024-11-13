@@ -23,7 +23,7 @@ class QuestionDetailAPIView(generics.RetrieveAPIView):
 
 
 class SendAnswerApiView(APIView):
-    permission_classes = (IsAuthenticated, ) #(AllowAny,)
+    permission_classes = (IsAuthenticated | IsStudents, ) #(AllowAny,)
 
     def post(self, request, question_id, **kwargs):
         serializer = SendAnswerRequest(data=request.data)

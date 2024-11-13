@@ -61,11 +61,6 @@ class LessonListAPIView(generics.ListAPIView):
     pagination_class = CustomPagination
     permission_classes = (IsAuthenticated | IsOwner | IsTeacher | IsStudents, ) #(AllowAny,)
 
-    def perform_create(self, serializer):
-        lesson = serializer.save()
-        lesson.owner = self.request.user
-        lesson.save()
-
 
 class LessonUpdateAPIView(generics.UpdateAPIView):
     queryset = Lesson.objects.all()
