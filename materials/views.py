@@ -6,7 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 from materials.models import Courses, Lesson
 from materials.paginators import CustomPagination
 from materials.serializers import CoursesRetrieveSerializer, CoursesSerializer, LessonSerializer
-from users.permissions import IsOwner, IsAdministrators, IsStudents
+from users.permissions import IsOwner, IsTeacher, IsStudents
 from materials.tasks import send_mail_abount_update_materials
 
 
@@ -36,18 +36,18 @@ class CoursesViewSet(ModelViewSet):
         '''Функция которая проверяет права доступа к Эндпоинтам.'''
 
         if self.action == 'create':
-            self.permission_classes = (IsAuthenticated | IsAdministrators, )
+            self.permission_classes = (IsAuthenticated | IsTeacher, ) #(AllowAny,)
         elif self.action in ['list', 'retrieve']:
-            self.permission_classes = (IsAuthenticated | IsOwner | IsAdministrators | IsStudents, )
+            self.permission_classes = (IsAuthenticated | IsOwner | IsTeacher | IsStudents, )
         elif self.action in ['update', 'partial_update', 'destroy']:
-            self.permission_classes = (IsAdministrators | IsOwner, )
+            self.permission_classes = (IsTeacher | IsOwner, )
 
         return super().get_permissions()
 
 
 class LessonCreateAPIView(generics.CreateAPIView):
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated | IsAdministrators, )
+    permission_classes = (IsAuthenticated | IsTeacher, ) #(AllowAny,)
 
     def perform_create(self, serializer):
         lesson = serializer.save()
@@ -59,7 +59,7 @@ class LessonListAPIView(generics.ListAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
     pagination_class = CustomPagination
-    permission_classes = (IsAuthenticated | IsOwner | IsAdministrators | IsStudents, )
+    permission_classes = (IsAuthenticated | IsOwner | IsTeacher | IsStudents, ) #(AllowAny,)
 
     def perform_create(self, serializer):
         lesson = serializer.save()
@@ -70,10 +70,10 @@ class LessonListAPIView(generics.ListAPIView):
 class LessonUpdateAPIView(generics.UpdateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAdministrators | IsOwner, )
+    permission_classes = (IsTeacher | IsOwner, ) #(AllowAny,)
 
     def perform_update(self, serializer):
-        lesson = self.get_objects()
+        lesson = self.get_object()
         serializer.save()
         #send_mail_abount_update_lesson.delay(lesson.sections.pk, lesson.pk)
 
@@ -82,9 +82,9 @@ class LessonUpdateAPIView(generics.UpdateAPIView):
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
-    permission_classes = (IsAuthenticated | IsOwner | IsAdministrators | IsStudents, )
+    permission_classes = (IsAuthenticated | IsOwner | IsTeacher | IsStudents, ) #(AllowAny,)
 
 
 class LessonDestroyAPIView(generics.DestroyAPIView):
     queryset = Lesson.objects.all()
-    permission_classes = (IsAdministrators | IsOwner, )
+    permission_classes = (IsTeacher | IsOwner, ) #(AllowAny,)

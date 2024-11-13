@@ -5,7 +5,6 @@ from rest_framework import generics
 from rest_framework.views import APIView
 
 from testing.models import Question, Answers
-from testing.paginators import CastomTestingPaginators
 from testing.serializers import (QuestionListSerializer, QuestionRetrieveSerializer,
                                  SendAnswerRequest, SendAnswerResponse)
 from users.permissions import IsStudents
@@ -14,18 +13,17 @@ from users.permissions import IsStudents
 class QuestionListAPIView(generics.ListAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionListSerializer
-    pagination_class = CastomTestingPaginators
-    permission_classes = (IsAuthenticated | IsStudents, )
+    permission_classes = (IsAuthenticated | IsStudents, ) #(AllowAny,)
 
 
 class QuestionDetailAPIView(generics.RetrieveAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionRetrieveSerializer
-    permission_classes = (IsAuthenticated | IsStudents, )
+    permission_classes = (IsAuthenticated | IsStudents, ) #(AllowAny,)
 
 
 class SendAnswerApiView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated, ) #(AllowAny,)
 
     def post(self, request, question_id, **kwargs):
         serializer = SendAnswerRequest(data=request.data)

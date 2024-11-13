@@ -9,8 +9,8 @@ class User(AbstractUser):
 
     username = None
     email = models.EmailField(unique=True, verbose_name='Почта')
-    first_name = models.CharField(max_length=50, **NULLABLE, verbose_name='Имя')
-    last_name = models.CharField(max_length=50, **NULLABLE, verbose_name='Фамилия')
+    first_name = models.CharField(max_length=50, verbose_name='Имя', **NULLABLE)
+    last_name = models.CharField(max_length=50, verbose_name='Фамилия', **NULLABLE)
     phone = models.CharField(max_length=35, verbose_name='Телефон', **NULLABLE)
     avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)
     token = models.CharField(max_length=100, verbose_name='token', **NULLABLE)
