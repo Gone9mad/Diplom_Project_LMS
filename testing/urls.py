@@ -9,5 +9,5 @@ app_name = TestingConfig.name
 urlpatterns = [
     path('questions/list/', QuestionListAPIView.as_view(), name='questions_list'),
     path('questions/<int:pk>/', QuestionDetailAPIView.as_view(), name='question_detail'),
-    path('send_answer/', SendAnswerApiView.as_view(), name='send_answer'),  # This endpoint sends an answer to a question.
+    path('questions/<int:question_id>/send_answer/', SendAnswerApiView.as_view(), name='send_answer'),  # This endpoint sends an answer to a question.
 ]

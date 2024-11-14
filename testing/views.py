@@ -22,8 +22,9 @@ class QuestionDetailAPIView(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticated | IsStudents, ) #(AllowAny,)
 
 
-class SendAnswerApiView(APIView):
-    permission_classes = (IsAuthenticated | IsStudents, ) #(AllowAny,)
+class SendAnswerApiView(generics.GenericAPIView):
+    permission_classes = (AllowAny,) #(IsAuthenticated | IsStudents, )
+    serializer_class = SendAnswerRequest
 
     def post(self, request, question_id, **kwargs):
         serializer = SendAnswerRequest(data=request.data)
