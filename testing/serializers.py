@@ -23,5 +23,5 @@ class SendAnswerResponse(serializers.ModelSerializer):
 
 
 class SendAnswerRequest(serializers.Serializer):
-    answers = serializers.ListField(children=IntegerField())
+    answers = serializers.ListField(child=IntegerField())
 
